@@ -50,7 +50,7 @@ podEnv: []
 
 persistentVolumeClaim:
   storageClassName: default
-  size: 20Gib
+  size: 20G
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
