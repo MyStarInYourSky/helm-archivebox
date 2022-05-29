@@ -69,7 +69,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ['exec', 'gosu', '"$ARCHIVEBOX_USER"', 'archivebox', 'manage', 'shell', '--command="from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username="$DJANGO_SUPERUSER_USERNAME").exists() or User.objects.create_superuser("$DJANGO_SUPERUSER_USERNAME", "DJANGO_SUPERUSER_EMAIL", "DJANGO_SUPERUSER_PASSWORD");"']
+          command: ['gosu', '"$ARCHIVEBOX_USER"', 'archivebox', 'manage', 'shell', '--command="from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username="$DJANGO_SUPERUSER_USERNAME").exists() or User.objects.create_superuser("$DJANGO_SUPERUSER_USERNAME", "DJANGO_SUPERUSER_EMAIL", "DJANGO_SUPERUSER_PASSWORD");"']
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
