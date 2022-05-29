@@ -57,7 +57,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ['dumb-init', ''--'', '/app/bin/docker_entrypoint.sh', 'archivebox', 'init']
+          command: ['dumb-init', '--', '/app/bin/docker_entrypoint.sh', 'archivebox', 'init']
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
