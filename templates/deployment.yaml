@@ -8,6 +8,7 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       {{- include "archivebox.selectorLabels" . | nindent 6 }}
@@ -33,7 +34,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ['archivebox', 'server', '--quick-init', '0.0.0.0:8000']
+          args: ['server', '--quick-init', '0.0.0.0:8000']
           ports:
             - name: http
               containerPort: 8000
@@ -57,7 +58,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ['dumb-init', '--', '/app/bin/docker_entrypoint.sh', 'archivebox', 'init']
+          args: ['init']
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
