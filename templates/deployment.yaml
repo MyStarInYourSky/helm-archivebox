@@ -51,6 +51,18 @@ spec:
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}
               mountPath: /data
+      initContainers:
+        - name: init
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ['archivebox', 'init']
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: {{ include "archivebox.fullname" . }}
+              mountPath: /data
       volumes:
       - name: {{ include "archivebox.fullname" . }}
         persistentVolumeClaim:
