@@ -76,3 +76,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+archivebox:
+  superUser:
+    userName: myuser
+    userEmail: myuser@test.com
+    userPassword: mypass
