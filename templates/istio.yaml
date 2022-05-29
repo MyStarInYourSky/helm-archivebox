@@ -13,6 +13,8 @@ metadata:
 spec:
   hosts:
     - {{ .Values.istio.virtualService.hostname }}
+  gateways:
+    - {{ .Values.istio.virtualService.gateway }}
   http:
     - name: "default-route"
       route:
