@@ -7,9 +7,28 @@ metadata:
   annotations:
     "helm.sh/hook": pre-install
 spec:
+  selector:
+    matchLabels:
+      {{- include "archivebox.selectorLabels" . | nindent 8 }}
   accessModes:
     - ReadWriteMany
   storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
   resources:
     requests:
       storage: {{ .Values.persistentVolumeClaim.size }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "archivebox.fullname" . }}
+  labels:
+    {{- include "archivebox.selectorLabels" . | nindent 8 }}
+  annotations:
+    "helm.sh/hook": pre-install
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: {{ .Values.persistentVolumeClaim.size }}
+  accessModes:
+    - ReadWriteMany
+  storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
