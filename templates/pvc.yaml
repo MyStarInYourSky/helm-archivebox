@@ -4,6 +4,8 @@ metadata:
   name: {{ include "archivebox.fullname" . }}
   labels:
     {{- include "archivebox.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-install
 spec:
   accessModes:
     - ReadWriteMany
