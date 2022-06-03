@@ -32,3 +32,5 @@ spec:
   accessModes:
     - ReadWriteMany
   storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
+  claimRef:
+    name: {{ include "archivebox.fullname" . }}
