@@ -54,7 +54,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}
-              mountPath: /data
+              mountPath: /app/data
         - name: {{ .Chart.Name }}-nginx
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -94,7 +94,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}
-              mountPath: /data
+              mountPath: /app/data
         - name: {{ .Chart.Name }}-createuser
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -109,7 +109,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}
-              mountPath: /data
+              mountPath: /app/data
         - name: {{ .Chart.Name }}-copystaticfiles
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
