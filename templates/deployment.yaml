@@ -54,6 +54,33 @@ spec:
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}
               mountPath: /data
+        - name: {{ .Chart.Name }}-nginx
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: nginx
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+            - name: {{ include "archivebox.fullname" . }}-nginx-conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
+            - name: {{ include "archivebox.fullname" . }}-nginx
+              mountPath: /usr/share/nginx/html
+              readOnly: true
       initContainers:
         - name: {{ .Chart.Name }}-init
           securityContext:
@@ -80,6 +107,20 @@ spec:
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}
               mountPath: /data
+        - name: {{ .Chart.Name }}-createuser
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          cmd:
+            - cp -R
+            - /app/static
+            - /nginx/static
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: {{ include "archivebox.fullname" . }}-nginx
+              mountPath: /nginx
           env:
             - name: DJANGO_SUPERUSER_USERNAME
               valueFrom:
@@ -103,6 +144,15 @@ spec:
       - name: {{ include "archivebox.fullname" . }}
         persistentVolumeClaim:
           claimName: {{ include "archivebox.fullname" . }}
+      - name: {{ include "archivebox.fullname" . }}-nginx
+        persistentVolumeClaim:
+          claimName: {{ include "archivebox.fullname" . }}-nginx
+      - name: {{ include "archivebox.fullname" . }}-nginx-conf
+        configMap:
+          name: {{ include "archivebox.fullname" . }}-nginx-conf
+          items:
+            - key: nginx.conf
+              path: nginx.conf
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

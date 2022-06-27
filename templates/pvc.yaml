@@ -7,8 +7,22 @@ metadata:
     {{- include "archivebox.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
   resources:
     requests:
       storage: {{ .Values.persistentVolumeClaim.size }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "archivebox.fullname" . }}-nginx
+  labels:
+    {{- include "archivebox.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
+  resources:
+    requests:
+      storage: 1G
