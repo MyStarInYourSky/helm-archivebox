@@ -107,12 +107,12 @@ spec:
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}
               mountPath: /data
-        - name: {{ .Chart.Name }}-createuser
+        - name: {{ .Chart.Name }}-copystaticfiles
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          cmd:
+          command:
             - cp -R
             - /app/static
             - /nginx/static
