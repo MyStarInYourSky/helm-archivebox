@@ -57,21 +57,22 @@ spec:
               mountPath: /app/data
         - name: {{ .Chart.Name }}-nginx
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: nginx
+              runAsUser: 101
+              runAsGroup: 101
+          image: nginxinc/nginx-unprivileged
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           livenessProbe:
             tcpSocket:
-              port: 80
+              port: 8080
             initialDelaySeconds: 5
             periodSeconds: 10
           readinessProbe:
             tcpSocket:
-              port: 80
+              port: 8080
             initialDelaySeconds: 5
             periodSeconds: 10
           volumeMounts:
