@@ -118,7 +118,7 @@ spec:
           command:
             - cp 
             - -R
-            - /app/static
+            - /app/venv/lib/python3.10/site-packages/archivebox/templates/static
             - /nginx/static
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
