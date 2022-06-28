@@ -116,7 +116,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
-            - cp -R
+            - cp 
+            - -R
             - /app/static
             - /nginx/static
           resources:
