@@ -121,6 +121,8 @@ spec:
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}-nginx
               mountPath: /nginx
+            - name: {{ include "archivebox.fullname" . }}
+              mountPath: /app/data
           env:
             - name: DJANGO_SUPERUSER_USERNAME
               valueFrom:
