@@ -34,7 +34,11 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: ['/entrypoint.sh']
+          command: /app/venv/bin/gunicorn 
+          args: 
+            - --pythonpath /app/venv/lib/python3.10/site-packages/archivebox 
+            - -b 0.0.0.0:8000 
+            - archivebox.wsgi:application
           ports:
             - name: http
               containerPort: 8000
