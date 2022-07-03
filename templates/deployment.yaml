@@ -34,7 +34,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: ['/app/venv/bin/archivebox', 'server', '--quick-init', '0.0.0.0:8000']
+          args: ['/entrypoint.sh']
           ports:
             - name: http
               containerPort: 8000
