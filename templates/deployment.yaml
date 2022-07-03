@@ -36,8 +36,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ['/app/venv/bin/gunicorn']
           args: 
-            - --pythonpath /app/venv/lib/python3.10/site-packages/archivebox 
-            - -b 0.0.0.0:8000 
+            - --pythonpath 
+            - /app/venv/lib/python3.10/site-packages/archivebox 
+            - -b 
+            - 0.0.0.0:8000 
             - archivebox.wsgi:application
           ports:
             - name: http
