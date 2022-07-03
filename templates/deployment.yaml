@@ -110,19 +110,6 @@ spec:
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}
               mountPath: /app/data
-        - name: {{ .Chart.Name }}-copystaticfiles
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ['/bin/sh', '-c', 'archivebox manage collectstatic && cp -R /app/static /nginx/static']
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-            - name: {{ include "archivebox.fullname" . }}-nginx
-              mountPath: /nginx
-            - name: {{ include "archivebox.fullname" . }}
-              mountPath: /app/data
           env:
             - name: DJANGO_SUPERUSER_USERNAME
               valueFrom:
@@ -142,6 +129,19 @@ spec:
                   name: "{{ include "archivebox.fullname" . }}"
                   key: userPassword
                   optional: false
+        - name: {{ .Chart.Name }}-copystaticfiles
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ['/bin/sh', '-c', 'archivebox manage collectstatic && cp -R /app/static /nginx/static']
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: {{ include "archivebox.fullname" . }}-nginx
+              mountPath: /nginx
+            - name: {{ include "archivebox.fullname" . }}
+              mountPath: /app/data
       volumes:
       - name: {{ include "archivebox.fullname" . }}
         persistentVolumeClaim:
