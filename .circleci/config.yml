@@ -20,7 +20,7 @@ jobs:
             export CHART_NAME=$(yq -r .name Chart.yaml)
             export CHART_VERSION=$(yq -r .version Chart.yaml)
             export CHART_TGZ="$CHART_NAME-$CHART_VERSION.tgz"
-            if [[ $(curl --request GET --url https://storage.bunnycdn.com/iloveyatoo-helm/ --header 'Accept: */*' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY" | jq -r '.[] | select(.ObjectName==env.CHART_TGZ)') ]]
+            if [[ $(curl -s --request GET --url https://storage.bunnycdn.com/iloveyatoo-helm/ --header 'Accept: */*' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY" | jq -r '.[] | select(.ObjectName==env.CHART_TGZ)') ]]
             then
               helm package ~/app
               mkdir target
@@ -28,6 +28,8 @@ jobs:
               helm repo index target --url https://helm.iloveyatoo.net
               ls 
               ls target
+            else
+              echo "no"
             fi
           name: "Build Helm Chart"
     working_directory: ~/app
