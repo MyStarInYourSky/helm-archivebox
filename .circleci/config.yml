@@ -14,8 +14,9 @@ jobs:
           command: |
             pip3 install yq
             wget https://get.helm.sh/helm-v3.9.0-linux-amd64.tar.gz
-            tar -ztvf helm-v3.9.0-linux-amd64.tar.gz linux-amd64/helm -c /usr/local/bin/
-            rm helm-v3.9.0-linux-amd64.tar.gz
+            tar xvf helm-v3.9.0-linux-amd64.tar.gz
+            mv linux-amd64/helm /usr/local/bin
+            rm -r helm-v3.9.0-linux-amd64.tar.gz linux-amd64
           name: Install Dependencies
       - 
         run: 
