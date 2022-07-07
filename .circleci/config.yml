@@ -22,14 +22,14 @@ jobs:
             export CHART_TGZ="$CHART_NAME-$CHART_VERSION.tgz"
             if [[ $(curl -s --request GET --url https://storage.bunnycdn.com/iloveyatoo-helm/ --header 'Accept: */*' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY" | jq -r '.[] | select(.ObjectName==env.CHART_TGZ)') ]]
             then
+              echo "Package already exists"
+            else
               helm package ~/app
               mkdir target
               mv $CHART_TGZ target/
               helm repo index target --url https://helm.iloveyatoo.net
               ls 
               ls target
-            else
-              echo "no"
             fi
           name: "Build Helm Chart"
     working_directory: ~/app
