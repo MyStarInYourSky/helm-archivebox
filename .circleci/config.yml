@@ -40,5 +40,4 @@ workflows:
             branches:
               only: master
           context: 
-            - build-tools-registry
-            - github
+            - bunny-storage-helm
