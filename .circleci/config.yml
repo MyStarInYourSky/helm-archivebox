@@ -32,7 +32,9 @@ jobs:
               cd ~/target
               helm package ~/app
               helm repo index ~/target --url https://helm.iloveyatoo.net
-              ls
+              curl --request PUT --url https://storage.bunnycdn.com/iloveyatoo-helm/index.yaml -d @index.yaml --header 'Content-Type: application/octet-stream' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY"
+              curl --request PUT --url https://storage.bunnycdn.com/iloveyatoo-helm/$CHART_TGZ -d @$CHART_TGZ --header 'Content-Type: application/octet-stream' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY"
+
             fi
           name: "Build Helm Chart"
     working_directory: ~/app
