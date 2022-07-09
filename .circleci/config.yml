@@ -1,6 +1,30 @@
 --- 
 jobs:
-  helm-build-stable: 
+  helm-lint: 
+    machine: 
+      docker_layer_caching: true
+      image: "ubuntu-2004:2022.04.1"
+      resource_class: medium
+    steps: 
+      - 
+        checkout: 
+          path: ~/app
+      -
+        run:
+          command: |
+            pip3 install yq
+            wget https://get.helm.sh/helm-v3.9.0-linux-amd64.tar.gz
+            tar xvf helm-v3.9.0-linux-amd64.tar.gz
+            sudo mv linux-amd64/helm /usr/local/bin
+            rm -r helm-v3.9.0-linux-amd64.tar.gz linux-amd64
+          name: Install Dependencies
+        -
+        run:
+          command: |
+            helm lint
+          name: Run Linter
+    working_directory: ~/app
+  helm-build: 
     machine: 
       docker_layer_caching: true
       image: "ubuntu-2004:2022.04.1"
@@ -42,9 +66,10 @@ version: 2.1
 workflows: 
   default: 
     jobs: 
-      - helm-build-stable:
+      - helm-build:
           filters:
             branches:
               only: master
           context: 
             - bunny-storage-helm
+      - helm-lint
