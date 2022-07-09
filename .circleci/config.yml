@@ -31,7 +31,7 @@ jobs:
               mkdir ~/target
               cd ~/target
               helm package ~/app
-              helm repo index target --url https://helm.iloveyatoo.net
+              helm repo index ~/target --url https://helm.iloveyatoo.net
               ls
             fi
           name: "Build Helm Chart"
