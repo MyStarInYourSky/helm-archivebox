@@ -136,12 +136,12 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ['/bin/sh', '-c', 'archivebox manage collectstatic && cp -R /app/static /nginx/static']
+          command: ['/bin/sh', '-c', 'archivebox manage collectstatic']
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - name: {{ include "archivebox.fullname" . }}-nginx
-              mountPath: /nginx
+              mountPath: /app/static
             - name: {{ include "archivebox.fullname" . }}
               mountPath: /app/data
       volumes:
