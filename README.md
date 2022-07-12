@@ -7,4 +7,10 @@ Features:
 - Secure setup with no root in any container and read-only root filesystem
 - Seperated static file serving using NGINX
 
+### Adding the repo
+The helm repo can be added by running
+```
+helm repo add iloveyatoo https://helm.catsdo.delivery/
+```
+
 ### Values
