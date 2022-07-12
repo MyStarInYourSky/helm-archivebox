@@ -39,7 +39,9 @@ spec:
             - --pythonpath 
             - /app/venv/lib/python3.10/site-packages/archivebox 
             - -b 
-            - 0.0.0.0:8000 
+            - 0.0.0.0:8000
+            - --timeout
+            - 300
             - archivebox.wsgi:application
           ports:
             - name: http
