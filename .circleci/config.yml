@@ -55,7 +55,8 @@ jobs:
               mkdir ~/target
               cd ~/target
               helm package ~/app
-              helm repo index ~/target --url https://helm.catsdo.delivery/archivebox
+              curl --request GET --url https://storage.bunnycdn.com/iloveyatoo-helm/archivebox/index.yaml --header 'Accept: */*' --header 'Content-Type: application/octet-stream' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY" -o index.yaml
+              helm repo index ~/target --merge
               curl --request PUT --url https://storage.bunnycdn.com/iloveyatoo-helm/archivebox/index.yaml --data-binary @index.yaml --header 'Content-Type: application/octet-stream' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY"
               curl --request PUT --url https://storage.bunnycdn.com/iloveyatoo-helm/archivebox/$CHART_TGZ --data-binary @$CHART_TGZ --header 'Content-Type: application/octet-stream' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY"
 
