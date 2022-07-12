@@ -4,7 +4,7 @@ This is an alternate deployment system for those wanting to deploy helm using gu
 
 Features:
 - Automatic creation of initial SuperUser
-- Secure setup with no root in any container
+- Secure setup with no root in any container and read-only root filesystem
 - Seperated static file serving using NGINX
 
 ### Values

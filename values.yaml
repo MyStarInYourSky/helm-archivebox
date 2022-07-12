@@ -32,6 +32,7 @@ securityContext:
   # runAsNonRoot: true
   runAsUser: 1000
   runAsGroup: 1000
+  readOnlyRootFilesystem: true
 
 service:
   type: ClusterIP
