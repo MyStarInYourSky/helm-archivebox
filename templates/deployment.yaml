@@ -41,7 +41,7 @@ spec:
             - -b 
             - 0.0.0.0:8000
             - --timeout
-            - 300
+            - "300"
             - archivebox.wsgi:application
           ports:
             - name: http
