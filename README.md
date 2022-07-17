@@ -22,3 +22,8 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | tolerations | | `[]` |
 | affinity | | `{}` |
 | podSecurityContext.fsGroup | | `1000` |
+| archivebox.superUser.userName | | `myuser` |
+| archivebox.superUser.userEmail | | `myuser@test.com` |
+| archivebox.superUser.userPassword | | `mypass` |
+| archivebox.storage.archive.storageClassName | | `default` |
+| archivebox.storage.archive.size | | `20G` |
