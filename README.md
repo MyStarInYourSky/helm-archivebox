@@ -19,8 +19,8 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | imagePullSecrets | Name of the Kubernetes Secret containing Docker Pull Secrets | `[]` |
 | podAnnotations | Additional annotations to be added to the pod | `[]` |
 | nodeSelector | Sets the NodeSelector to constrain the pod to certain nodes | `{}` |
-| tolerations | | `[]` |
-| affinity | | `{}` |
+| tolerations | Schedule pods on nodes with matching taints | `[]` |
+| affinity | Constrain Pods against labels on other Pods | `{}` |
 | podSecurityContext | Permissions for volumes mounted in the pod | `{fsGroup: 1000}` |
 | archivebox.superUser.userName | Sets the username for the superuser of archivebox | `myuser` |
 | archivebox.superUser.userEmail | Sets the user email for the superuser of archivebox | `myuser@test.com` |
