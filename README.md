@@ -21,7 +21,7 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | nodeSelector | Sets the NodeSelector to constrain the pod to certain nodes | `{}` |
 | tolerations | | `[]` |
 | affinity | | `{}` |
-| podSecurityContext.fsGroup | Permissions for volumes mounted in the pod | `1000` |
+| podSecurityContext | Permissions for volumes mounted in the pod | `{fsGroup: 1000}` |
 | archivebox.superUser.userName | Sets the username for the superuser of archivebox | `myuser` |
 | archivebox.superUser.userEmail | Sets the user email for the superuser of archivebox | `myuser@test.com` |
 | archivebox.superUser.userPassword | Sets the user password for the superuser of archivebox | `mypass` |
@@ -33,17 +33,17 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | archivebox.resources.limits.memory | Sets the Memory limits for archivebox | `512Mi` |
 | archivebox.resources.requests.cpu | Sets the CPU requests for archivebox | `100m` |
 | archivebox.resources.requests.memory | Sets the Memory requests for archivebox | `512Mi` |
-| archivebox.image.repository | Sets the image repository for the docker image | `ghcr.io/iloveyatoo/archivebox` |
-| archivebox.image.pullPolicy | Sets the pullPolicy for the docker image | `Always` |
+| archivebox.image.repository | Sets the image repository for the archivebox docker image | `ghcr.io/iloveyatoo/archivebox` |
+| archivebox.image.pullPolicy | Sets the pullPolicy for the archivebox docker image | `Always` |
 | archivebox.image.tag | Overrides the docker tag for archivebox | `""` |
-| archivebox.securityContext | | `{capabilities: {drop: [ALL]}, readOnlyRootFilesystem: true, runAsGroup: 1000, runAsUser: 1000}` |
-| nginx.storage.nginx.storageClassName | | `default` |
-| nginx.storage.nginx.size | | `1G` |
-| nginx.storage.nginx.resources.limits.cpu | | `100m` |
-| nginx.storage.nginx.resources.limits.memory | | `128Mi` |
-| nginx.resources.requests.cpu | | `100m` |
-| nginx.resources.requests.memory | | `128Mi` |
-| nginx.image.repository | | `nginxinc/nginx-unprivileged` |
-| nginx.image.pullPolicy | | `Always` |
-| nginx.image.tag | | `""` |
-| nginx.securityContext | | `{capabilities: {drop: [ALL]}, runAsUser: 101, runAsGroup: 101, readOnlyRootFilesystem: true}` |
+| archivebox.securityContext | Sets the securityContext for the container | `{capabilities: {drop: [ALL]}, readOnlyRootFilesystem: true, runAsGroup: 1000, runAsUser: 1000}` |
+| nginx.storage.nginx.storageClassName | Sets the storage class for nginx static file storage | `default` |
+| nginx.storage.nginx.size | Sets the storage size for nginx static file storage | `1G` |
+| nginx.storage.nginx.resources.limits.cpu | Sets the CPU limits for nginx | `100m` |
+| nginx.storage.nginx.resources.limits.memory | Sets the Memory limits for nginx | `128Mi` |
+| nginx.resources.requests.cpu | Sets the CPU requests for nginx | `100m` |
+| nginx.resources.requests.memory | Sets the Memory requests for nginx | `128Mi` |
+| nginx.image.repository | Sets the image repository for the nginx docker image | `nginxinc/nginx-unprivileged` |
+| nginx.image.pullPolicy | Sets the pullPolicy for the nginx docker image | `Always` |
+| nginx.image.tag | Overrides the docker tag for nginx | `""` |
+| nginx.securityContext | Sets the securityContext for the container | `{capabilities: {drop: [ALL]}, runAsUser: 101, runAsGroup: 101, readOnlyRootFilesystem: true}` |
