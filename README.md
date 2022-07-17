@@ -27,3 +27,12 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | archivebox.superUser.userPassword | | `mypass` |
 | archivebox.storage.archive.storageClassName | | `default` |
 | archivebox.storage.archive.size | | `20G` |
+| archivebox.storage.temp.storageClassName | | `default` |
+| archivebox.storage.temp.size | | `5G` |
+| archivebox.resources.limits.cpu | | `200m` |
+| archivebox.resources.limits.memory | | `512Mi` |
+| archivebox.resources.requests.cpu | | `100m` |
+| archivebox.resources.requests.memory | | `512Mi` |
+| archivebox.image.repository | | `ghcr.io/iloveyatoo/archivebox` |
+| archivebox.image.pullPolicy | | `Always` |
+| archivebox.image.tag | | `""` |
