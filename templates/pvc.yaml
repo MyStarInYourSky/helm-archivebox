@@ -8,10 +8,10 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
+  storageClassName: {{ .Values.archivebox.storage.archive.storageClassName }}
   resources:
     requests:
-      storage: {{ .Values.persistentVolumeClaim.size }}
+      storage: {{ .Values.archivebox.storage.archive.size }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -22,10 +22,10 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
+  storageClassName: {{ .Values.nginx.storage.nginx.storageClassName }}
   resources:
     requests:
-      storage: 1G
+      storage: {{ .Values.nginx.storage.nginx.size }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -36,7 +36,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: {{ .Values.persistentVolumeClaim.storageClassName }}
+  storageClassName: {{ .Values.archivebox.storage.temp.storageClassName }}
   resources:
     requests:
-      storage: 5G
+      storage: {{ .Values.archivebox.storage.temp.size }}
