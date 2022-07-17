@@ -14,8 +14,8 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 ```
 
 ### Values
-| Value  	| Description  	|   	|
+| Value  	| Description  	| Defaults  	|
 |---	    |---	|---	|
-| imagePullSecrets|   	|   	|
-| nameOverride  	|   	|   	|
-| fullnameOverride  	|   	|   	|
+| imagePullSecrets | Name of the Kubernetes Secret containing Docker Pull Secrets | `[]` |
+| nameOverride |   	|   	|
+| fullnameOverride |   	|   	|
