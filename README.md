@@ -21,11 +21,11 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | nodeSelector | Sets the NodeSelector to constrain the pod to certain nodes | `{}` |
 | tolerations | | `[]` |
 | affinity | | `{}` |
-| podSecurityContext.fsGroup | | `1000` |
-| archivebox.superUser.userName | | `myuser` |
-| archivebox.superUser.userEmail | | `myuser@test.com` |
-| archivebox.superUser.userPassword | | `mypass` |
-| archivebox.storage.archive.storageClassName | | `default` |
+| podSecurityContext.fsGroup | Permissions for volumes mounted in the pod | `1000` |
+| archivebox.superUser.userName | Sets the username for the superuser of archivebox | `myuser` |
+| archivebox.superUser.userEmail | Sets the user email for the superuser of archivebox | `myuser@test.com` |
+| archivebox.superUser.userPassword | Sets the user password for the superuser of archivebox | `mypass` |
+| archivebox.storage.archive.storageClassName | Sets the storageClass for archivebox storage | `default` |
 | archivebox.storage.archive.size | | `20G` |
 | archivebox.storage.temp.storageClassName | | `default` |
 | archivebox.storage.temp.size | | `5G` |
@@ -36,3 +36,5 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | archivebox.image.repository | | `ghcr.io/iloveyatoo/archivebox` |
 | archivebox.image.pullPolicy | | `Always` |
 | archivebox.image.tag | | `""` |
+| archivebox.securityContext | | `{capabilities: {drop: [ALL]}, readOnlyRootFilesystem: true, runAsGroup: 1000, runAsUser: 1000}` |
+
