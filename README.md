@@ -19,3 +19,6 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | imagePullSecrets | Name of the Kubernetes Secret containing Docker Pull Secrets | `[]` |
 | podAnnotations | Additional annotations to be added to the pod | `[]` |
 | nodeSelector | Sets the NodeSelector to constrain the pod to certain nodes | `{}` |
+| tolerations | | `[]` |
+| affinity | | `{}` |
+| podSecurityContext.fsGroup | | `1000` |
