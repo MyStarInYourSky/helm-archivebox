@@ -59,5 +59,9 @@ nginx:
     pullPolicy: Always
     tag: ""
   securityContext:
+    capabilities:
+      drop:
+      - ALL
     runAsUser: 101
     runAsGroup: 101
+    readOnlyRootFilesystem: true
