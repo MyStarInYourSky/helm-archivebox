@@ -26,9 +26,9 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | archivebox.superUser.userEmail | Sets the user email for the superuser of archivebox | `myuser@test.com` |
 | archivebox.superUser.userPassword | Sets the user password for the superuser of archivebox | `mypass` |
 | archivebox.storage.archive.storageClassName | Sets the storageClass for archivebox storage | `default` |
-| archivebox.storage.archive.size | | `20G` |
-| archivebox.storage.temp.storageClassName | | `default` |
-| archivebox.storage.temp.size | | `5G` |
+| archivebox.storage.archive.size | Sets the storage size for archivebox storage | `20G` |
+| archivebox.storage.temp.storageClassName | Sets the storageClass for temporary storage for archivebox | `default` |
+| archivebox.storage.temp.size | Sets the storage size for temporary storage for archivebox | `5G` |
 | archivebox.resources.limits.cpu | | `200m` |
 | archivebox.resources.limits.memory | | `512Mi` |
 | archivebox.resources.requests.cpu | | `100m` |
@@ -37,4 +37,13 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | archivebox.image.pullPolicy | | `Always` |
 | archivebox.image.tag | | `""` |
 | archivebox.securityContext | | `{capabilities: {drop: [ALL]}, readOnlyRootFilesystem: true, runAsGroup: 1000, runAsUser: 1000}` |
-
+| nginx.storage.nginx.storageClassName | | `default` |
+| nginx.storage.nginx.size | | `1G` |
+| nginx.storage.nginx.resources.limits.cpu | | `100m` |
+| nginx.storage.nginx.resources.limits.memory | | `128Mi` |
+| nginx.resources.requests.cpu | | `100m` |
+| nginx.resources.requests.memory | | `128Mi` |
+| nginx.image.repository | | `nginxinc/nginx-unprivileged` |
+| nginx.image.pullPolicy | | `Always` |
+| nginx.image.tag | | `""` |
+| nginx.securityContext | | `{capabilities: {drop: [ALL]}, runAsUser: 101, runAsGroup: 101, readOnlyRootFilesystem: true}` |
