@@ -29,13 +29,13 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 | archivebox.storage.archive.size | Sets the storage size for archivebox storage | `20G` |
 | archivebox.storage.temp.storageClassName | Sets the storageClass for temporary storage for archivebox | `default` |
 | archivebox.storage.temp.size | Sets the storage size for temporary storage for archivebox | `5G` |
-| archivebox.resources.limits.cpu | | `200m` |
-| archivebox.resources.limits.memory | | `512Mi` |
-| archivebox.resources.requests.cpu | | `100m` |
-| archivebox.resources.requests.memory | | `512Mi` |
-| archivebox.image.repository | | `ghcr.io/iloveyatoo/archivebox` |
-| archivebox.image.pullPolicy | | `Always` |
-| archivebox.image.tag | | `""` |
+| archivebox.resources.limits.cpu | Sets the CPU limits for archivebox | `200m` |
+| archivebox.resources.limits.memory | Sets the Memory limits for archivebox | `512Mi` |
+| archivebox.resources.requests.cpu | Sets the CPU requests for archivebox | `100m` |
+| archivebox.resources.requests.memory | Sets the Memory requests for archivebox | `512Mi` |
+| archivebox.image.repository | Sets the image repository for the docker image | `ghcr.io/iloveyatoo/archivebox` |
+| archivebox.image.pullPolicy | Sets the pullPolicy for the docker image | `Always` |
+| archivebox.image.tag | Overrides the docker tag for archivebox | `""` |
 | archivebox.securityContext | | `{capabilities: {drop: [ALL]}, readOnlyRootFilesystem: true, runAsGroup: 1000, runAsUser: 1000}` |
 | nginx.storage.nginx.storageClassName | | `default` |
 | nginx.storage.nginx.size | | `1G` |
