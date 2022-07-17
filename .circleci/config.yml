@@ -59,7 +59,6 @@ jobs:
               helm repo index ~/target --merge index.yaml
               curl --request PUT --url https://storage.bunnycdn.com/iloveyatoo-helm/index.yaml --data-binary @index.yaml --header 'Content-Type: application/octet-stream' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY"
               curl --request PUT --url https://storage.bunnycdn.com/iloveyatoo-helm/$CHART_TGZ --data-binary @$CHART_TGZ --header 'Content-Type: application/octet-stream' --header "AccessKey: $BUNNY_STORAGE_HELM_KEY"
-
             fi
           name: "Build Helm Chart"
     working_directory: ~/app
