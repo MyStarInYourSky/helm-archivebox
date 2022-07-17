@@ -14,3 +14,8 @@ helm repo add iloveyatoo https://helm.catsdo.delivery/
 ```
 
 ### Values
+| Value  	| Description  	|   	|
+|---	    |---	|---	|
+| imagePullSecrets|   	|   	|
+| nameOverride  	|   	|   	|
+| fullnameOverride  	|   	|   	|
